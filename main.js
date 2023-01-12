@@ -10,7 +10,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// creates and empty "board" for the user to see where marks can be placed.
+// creates an empty "board" for the user to see where marks can be placed.
 // using let because the variable is expected to change with more 'X's and 'O's to add
 let board = [
   [' ', ' ', ' '],
@@ -33,24 +33,56 @@ const printBoard = () => {
 }
 
 const horizontalWin = () => {
-  // Your code here to check for horizontal wins
+
+  const horizontalWin1 = board[0][0] === playerTurn && board[0][1] === playerTurn && board[0][2] === playerTurn
+  const horizontalWin2 = board[1][0] === playerTurn && board[1][1] === playerTurn && board[1][2] === playerTurn
+  const horizontalWin3 = board[2][0] === playerTurn && board[2][1] === playerTurn && board[2][2] === playerTurn
+
+  if (horizontalWin1 || horizontalWin2 || horizontalWin3) {
+    return true
+  } else {
+    return false
+  }
 }
 
 const verticalWin = () => {
-  // Your code here to check for vertical wins
+
+  const verticalWin1 = board[0][0] === playerTurn && board[1][0] === playerTurn && board[2][0] === playerTurn
+  const verticalWin2 = board[0][1] === playerTurn && board[1][1] === playerTurn && board[2][1] === playerTurn
+  const verticalWin3 = board[0][2] === playerTurn && board[1][2] === playerTurn && board[2][2] === playerTurn
+
+  if (verticalWin1 || verticalWin2 || verticalWin3) {
+    return true
+  } else {
+    return false
+  }
 }
 
 const diagonalWin = () => {
-  // Your code here to check for diagonal wins
+
+  const diagonalWin1 = board[0][0] === playerTurn && board[1][1] === playerTurn && board[2][2] === playerTurn
+  const diagonalWin2 = board[0][2] === playerTurn && board[1][1] === playerTurn && board[2][0] === playerTurn
+
+  if (diagonalWin1 || diagonalWin2) {
+    return true
+  } else {
+    return false
+  }
 }
 
 const checkForWin = () => {
-  // Your code here call each of the check for types of wins
+  if (horizontalWin() || verticalWin() || diagonalWin()) {
+    return true 
+  } else {
+    return false
+  }
 }
 
 const ticTacToe = (row, column) => {
-  // Your code here to place a marker on the board
-  // then check for a win
+  board[row][column] = playerTurn
+  if (!checkForWin()) {
+    playerTurn = playerTurn === "X" ? "O" : "X"
+  }
 }
 
 const getPrompt = () => {

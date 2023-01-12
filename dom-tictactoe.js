@@ -28,16 +28,8 @@ const handleClick = (element) => {
 
 const addMarker = (id) => {
   console.log(`We'll place a mark on square: ${id}`)
-  // @TODO, Mix & Match. 
-  // You will need the following pieces:
-  
-  // = currentMarker
-  // .getElementById(id)
-  // document
-  // .innerHTML 
-  
-  // Arrange the above pieces into a single line of code
-  // to add an X or O to the board to the DOM so it can be scene on the screen.
+  document.getElementById(id).innerHTML = currentMarker
+  // adds an X or O to the board to the DOM so it can be scene on the screen.
 }
 
 // passes the element's id attribute from HTML to be used
@@ -47,6 +39,7 @@ const updateBoard = (id) => {
   const column = parseInt(id.charAt(2)) 
 
   console.log(`you clicked the sq at ${row} and ${column}`)
+  board[row][column] = currentMarker
   console.log(board)
 
   // @TODO, Your code here: use the above information to change the board variable(array of arrays)
