@@ -50,7 +50,7 @@ const checkForWin = () => {
   // calls each checkForWin possibility and if any are true gives a page alert,
   if(horizontalWin() || verticalWin() || diagonalWin()) {
     // **BONUS** you could make the dismissal of this alert window reset the board...
-    window.alert(`Player ${currentMarker} won!`)
+    setTimeout(() => window.alert(`Player ${currentMarker} won!`), 100)
   } else {
     // if no win, change the marker from X to O, or O to X for the next player.
     changeMarker()
@@ -58,15 +58,41 @@ const checkForWin = () => {
 }
 
 const horizontalWin = () => {
-  // @TODO, Your code here: to check for horizontal wins
+
+  const horizontalWin1 = board[0][0] === currentMarker && board[0][1] === currentMarker && board[0][2] === currentMarker
+  const horizontalWin2 = board[1][0] === currentMarker && board[1][1] === currentMarker && board[1][2] === currentMarker
+  const horizontalWin3 = board[2][0] === currentMarker && board[2][1] === currentMarker && board[2][2] === currentMarker
+
+  if (horizontalWin1 || horizontalWin2 || horizontalWin3) {
+    return true
+  } else {
+    return false
+  }
 }
 
 const verticalWin = () => {
-  // @TODO, Your code here: to check for vertical wins
+
+  const verticalWin1 = board[0][0] === currentMarker && board[1][0] === currentMarker && board[2][0] === currentMarker
+  const verticalWin2 = board[0][1] === currentMarker && board[1][1] === currentMarker && board[2][1] === currentMarker
+  const verticalWin3 = board[0][2] === currentMarker && board[1][2] === currentMarker && board[2][2] === currentMarker
+
+  if (verticalWin1 || verticalWin2 || verticalWin3) {
+    return true
+  } else {
+    return false
+  }
 }
 
 const diagonalWin = () => {
-  // @TODO, Your code here: to check for diagonal wins
+
+  const diagonalWin1 = board[0][0] === currentMarker && board[1][1] === currentMarker && board[2][2] === currentMarker
+  const diagonalWin2 = board[0][2] === currentMarker && board[1][1] === currentMarker && board[2][0] === currentMarker
+
+  if (diagonalWin1 || diagonalWin2) {
+    return true
+  } else {
+    return false
+  }
 }
 
 const changeMarker = () => {
@@ -87,7 +113,13 @@ const resetBoard = () => {
     squares[i].innerHTML = null
   }
   
-  // @TODO, Your code here: make sure to reset the array of arrays to empty for a new game
+  board = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+  ]
+
+  currentMarker = 'X'
 }
 
 // **BONUSES**
